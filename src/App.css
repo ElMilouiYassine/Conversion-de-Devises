@@ -1,18 +1,246 @@
+/* Styles de base */
 .App {
   text-align: center;
-  font-family: Arial, sans-serif;
+  font-family: 'Arial', sans-serif;
   padding: 20px;
+  
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background-color: #87accb;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 80 40' width='80' height='40'%3E%3Cpath fill='%239ac6d1' fill-opacity='0.62' d='M0 40a19.96 19.96 0 0 1 5.9-14.11 20.17 20.17 0 0 1 19.44-5.2A20 20 0 0 1 20.2 40H0zM65.32.75A20.02 20.02 0 0 1 40.8 25.26 20.02 20.02 0 0 1 65.32.76zM.07 0h20.1l-.08.07A20.02 20.02 0 0 1 .75 5.25 20.08 20.08 0 0 1 .07 0zm1.94 40h2.53l4.26-4.24v-9.78A17.96 17.96 0 0 0 2 40zm5.38 0h9.8a17.98 17.98 0 0 0 6.67-16.42L7.4 40zm3.43-15.42v9.17l11.62-11.59c-3.97-.5-8.08.3-11.62 2.42zm32.86-.78A18 18 0 0 0 63.85 3.63L43.68 23.8zm7.2-19.17v9.15L62.43 2.22c-3.96-.5-8.05.3-11.57 2.4zm-3.49 2.72c-4.1 4.1-5.81 9.69-5.13 15.03l6.61-6.6V6.02c-.51.41-1 .85-1.48 1.33zM17.18 0H7.42L3.64 3.78A18 18 0 0 0 17.18 0zM2.08 0c-.01.8.04 1.58.14 2.37L4.59 0H2.07z'%3E%3C/path%3E%3C/svg%3E");
+  animation: animationhorizontale 60s linear 0s infinite alternate;
+  background-position: -100%; 
+
+}
+@keyframes animationhorizontale { 
+  from { background-position: -100% 0; } 
+  to { background-position: 100% 0; }  
 }
 
+/* Conteneur du convertisseur */
 .converter {
-  background: #f4f4f4;
-  padding: 20px;
-  border-radius: 10px;
-  display: inline-block;
+  padding: 50px 20px;
+  max-width: 1200px;
+  margin: 30px auto;
+  background-color: hsla(213, 48%, 75%, 0.745);
+  box-shadow: var(--shadow);
+  border-radius: var(--border-radius);
+  flex: 1;
+
 }
 
-input, select, button {
-  margin: 10px;
-  padding: 8px;
+/* Animation d'apparition */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(-20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Titre */
+h2 {
+  color: #333;
+  margin-bottom: 20px;
+  font-size: 24px;
+  font-weight: bold;
+  
+}
+
+/* Champs de saisie et sélecteurs */
+input, select {
+  margin: 10px 0;
+  padding: 12px;
   font-size: 16px;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  width: calc(100% - 24px);
+  box-sizing: border-box;
+  transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+input:focus, select:focus {
+  outline: none;
+  border-color: #007bff;
+  box-shadow: 0 0 8px rgba(0, 123, 255, 0.3);
+}
+
+/* Bouton de conversion */
+button {
+  line-height: 1;
+  background-color: transparent;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.35em;
+  padding: 0.75em 1em;
+  padding-right: 1.25em;
+  color: #fff;
+  border: 1px solid transparent;
+  font-weight: 700;
+  border-radius: 2em;
+  font-size: 1rem;
+  box-shadow: 0 0.7em 1.5em -0.5em hsla(249, 62%, 51%, 0.745);
+  transition: transform 0.3s, background-color var(--transition-speed) ease;
+  background: linear-gradient(
+      90deg,
+      rgb(81, 137, 174) 0%,
+      rgb(61, 102, 185) 100%
+  );
+  margin: 30px auto;
+
+}
+
+button:hover {
+  background: #0056b3;
+  transform: translateY(-2px);
+}
+
+button:active {
+  transform: translateY(0);
+}
+
+button:disabled {
+  background: #ccc;
+  cursor: not-allowed;
+  transform: none;
+}
+
+/* Résultat de la conversion */
+h3 {
+  color: #333;
+  margin-top: 20px;
+  font-size: 20px;
+  animation: slideIn 0.5s ease-in-out;
+}
+
+/* Animation pour le résultat */
+@keyframes slideIn {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Message d'erreur */
+.error {
+  color: #ff4d4d;
+  font-weight: bold;
+  margin-top: 10px;
+  animation: shake 0.5s ease-in-out;
+}
+
+/* Animation pour les erreurs */
+@keyframes shake {
+  0%, 100% {
+    transform: translateX(0);
+  }
+  25% {
+    transform: translateX(-10px);
+  }
+  50% {
+    transform: translateX(10px);
+  }
+  75% {
+    transform: translateX(-10px);
+  }
+}
+
+/* Icône de flèche */
+.arrow {
+  font-size: 24px;
+  margin: 10px 0;
+  color: #007bff;
+  animation: bounce 2s infinite;
+}
+
+/* Animation pour la flèche */
+@keyframes bounce {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-5px);
+  }
+}
+
+/* Responsive Design */
+@media (max-width: 600px) {
+  .converter {
+    padding: 20px;
+  }
+
+  h2 {
+    font-size: 20px;
+  }
+
+  input, select, button {
+    font-size: 14px;
+  }
+
+  h3 {
+    font-size: 18px;
+  }
+}
+/* Styles pour le footer */
+footer {
+  text-align: center;
+  padding: 15px 0;
+  background-color: var(--primary-color);
+  color: var(--white);
+  margin-top: auto;
+  box-shadow: var(--shadow);
+}
+
+.footer-content {
+  display: flex;
+  align-items: center; /* Aligne verticalement */
+  justify-content: center; /* Centre horizontalement */
+  gap: 10px; /* Espacement entre la phrase et les icônes */
+}
+
+.footer-content p {
+  display: inline-block;
+  vertical-align: middle;
+  margin: 0 5px;
+
+}
+
+.social-links {
+  display: flex;
+  gap: 15px;
+}
+
+.social-links a {
+  font-size: 1.5rem; /* Taille des icônes */
+  color: var(--white); /* Couleur des icônes */
+  text-decoration: none;
+  transition: color 0.3s ease;
+}
+
+.social-links a:hover {
+  color: #007bff;
+  transform: translateY(-3px);
+}
+
+/* Responsive Design pour le footer */
+@media (max-width: 600px) {
+  .footer-content p {
+    font-size: 12px;
+  }
+
+  .social-links a {
+    font-size: 18px;
+  }
 }
