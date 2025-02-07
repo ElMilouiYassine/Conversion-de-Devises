@@ -1,0 +1,18 @@
+.App {
+  text-align: center;
+  font-family: Arial, sans-serif;
+  padding: 20px;
+}
+
+.converter {
+  background: #f4f4f4;
+  padding: 20px;
+  border-radius: 10px;
+  display: inline-block;
+}
+
+input, select, button {
+  margin: 10px;
+  padding: 8px;
+  font-size: 16px;
+}
